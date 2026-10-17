@@ -14,9 +14,9 @@ Vendosa `WHERE false` vetëm te pyetja `lexoUdhetimet`. Aplikacioni tregoi mesaz
 Ndryshova përkohësisht emrin e variablës `DATABASE_URL` në `.env.local` dhe rinisa serverin. Aplikacioni tregoi mesazhin **“Gabim në lidhje me databazën”**. Pasi riktheva emrin e saktë dhe rinisa serverin, lidhja punoi sërish. `.env.local` nuk shfaqet në listën e GitHub Desktop sepse është i përjashtuar nga `.gitignore`.
 
 ## Ku gjendet puna
-- `schema.sql` (definimi i tabelës `udhetimet`)  
-- Skedarët e ndryshuar: `src/app/api/udhetimet/route.ts`, `src/app/page.tsx`  
-- Repository: [https://github.com/bleriondugolli/rideshare-mobile](https://github.com/bleriondugolli/rideshare-mobile)  
+- `schema.sql` (definimi i tabelës `udhetimet`)
+- Skedarët e ndryshuar: `src/app/api/udhetimet/route.ts`, `src/app/page.tsx`
+- Repository: [https://github.com/bleriondugolli/rideshare-mobile](https://github.com/bleriondugolli/rideshare-mobile)
 - Deploy në Vercel (opsional këtë javë): [https://rideshare-mobile.vercel.app](https://rideshare-mobile.vercel.app)
 
 ## Çfarë mbetet për përmirësim
