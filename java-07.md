@@ -18,9 +18,13 @@ Para ndryshimit prisja që hapja e kërkesës për ID 1 të shfaqte një simulim
 1. Te kërkesa demonstrative, titulli “Simulim: Në pritje” mund të nënkuptonte se kërkesa ishte regjistruar. E përsërita duke hapur kërkesën e ID 1; teksti poshtë thoshte se ajo nuk ishte dërguar.
 2. Faqja për ID që mungon nuk tregon vlerën e ID-së që u kërkua. Mesazhi dhe kthimi te lista janë të qarta, por shfaqja e ID-së mund ta ndihmojë përdoruesin të gjejë gabimin.
 
-## Korrigjimi (arsyeja)
+## Korrigjimi
+
+Arsyeja: Titulli “Në pritje” mund të kuptohej si kërkesë e ruajtur ose në radhë, megjithëse faqja nuk dërgon kërkesë.
+
 Skedari: aplikacioni/src/app/udhetimi/[id]/kerkesa/page.tsx
-Ndryshova titullin nga “Simulim: Në pritje” në “Simulim: Kërkesa nuk u dërgua”, sepse formulimi i vjetër mund të dukej si kërkesë e ruajtur. Titulli i ri përputhet me tekstin poshtë dhe sqaron se ky veprim nuk dërgon kërkesë. Nuk ndryshova të dhëna në Neon.
+
+Korrigjimi: Ndryshova titullin nga “Simulim: Në pritje” në “Simulim: Kërkesa nuk u dërgua”. Titulli i ri përputhet me tekstin shpjegues dhe sqaron se nuk bëhet rezervim apo njoftim. Nuk ndryshova të dhëna në Neon.
 
 ## Versionet
 Para: https://github.com/bleriondugolli/rideshare-mobile/commit/4fc9e123160cd97b20ab97abf65beb45f0b1f0c1
