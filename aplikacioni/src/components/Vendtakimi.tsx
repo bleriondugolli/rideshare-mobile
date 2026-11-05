@@ -33,7 +33,6 @@ export function Vendtakimi({
   const [gabim, setGabim] = useState("");
   const [gjendjaVendndodhjes, setGjendjaVendndodhjes] =
     useState<GjendjaVendndodhjes>("idle");
-  const [dukeKerkuarVendndodhjen, setDukeKerkuarVendndodhjen] = useState(false);
   const [saktesia, setSaktesia] = useState<number | null>(null);
 
   function konfirmo() {
@@ -59,24 +58,20 @@ export function Vendtakimi({
     } else {
       setGjendjaVendndodhjes("unavailable");
     }
-    setDukeKerkuarVendndodhjen(false);
   }
 
   function lexoVendndodhjen() {
     setSaktesia(null);
     if (!navigator.geolocation) {
-      setDukeKerkuarVendndodhjen(false);
       setGjendjaVendndodhjes("unavailable");
       return;
     }
 
-    setDukeKerkuarVendndodhjen(true);
     setGjendjaVendndodhjes("loading");
 
     function kurMerretPozicioni(position: GeolocationPosition) {
       setSaktesia(Math.round(position.coords.accuracy));
       setGjendjaVendndodhjes("success");
-      setDukeKerkuarVendndodhjen(false);
     }
 
     try {
@@ -87,7 +82,6 @@ export function Vendtakimi({
       );
     } catch {
       setGjendjaVendndodhjes("unavailable");
-      setDukeKerkuarVendndodhjen(false);
     }
   }
 
@@ -124,7 +118,7 @@ export function Vendtakimi({
         type="button"
         data-testid="locate-me"
         onClick={lexoVendndodhjen}
-        disabled={dukeKerkuarVendndodhjen}
+        disabled={gjendjaVendndodhjes === "loading"}
       >
         Përdor vendndodhjen time
       </button>
