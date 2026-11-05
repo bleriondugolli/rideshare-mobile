@@ -1,14 +1,1 @@
-{
-  "project": "rideshare-mobile",
-  "week": 8,
-  "testPage": "/java-08-test",
-  "testIds": {
-    "meetingInput": "meeting-input",
-    "confirmMeeting": "confirm-meeting",
-    "confirmedMeeting": "confirmed-meeting",
-    "meetingError": "meeting-error",
-    "locateMe": "locate-me",
-    "locationStatus": "location-status",
-    "locationAccuracy": "location-accuracy"
-  }
-}
+{"version":1,"path":"/java-08-test"}

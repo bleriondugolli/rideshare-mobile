@@ -2,6 +2,23 @@
 
 import { useState } from "react";
 
+type GjendjaVendndodhjes =
+  | "idle"
+  | "loading"
+  | "success"
+  | "denied"
+  | "timeout"
+  | "unavailable";
+
+const mesazhetVendndodhjes: Record<GjendjaVendndodhjes, string> = {
+  idle: "Vendndodhja nuk është kërkuar.",
+  loading: "Po kërkojmë vendndodhjen…",
+  success: "Pozicioni u mor.",
+  denied: "Leja u refuzua. Shkruaj vendtakimin vetë.",
+  timeout: "Kërkesa për vendndodhje skadoi. Provo përsëri.",
+  unavailable: "Vendndodhja nuk është e disponueshme.",
+};
+
 export function Vendtakimi({
   vendtakimi: vendtakimiFillestar,
   testId,
@@ -14,9 +31,8 @@ export function Vendtakimi({
   const [teksti, setTeksti] = useState("");
   const [vendtakimi, setVendtakimi] = useState("");
   const [gabim, setGabim] = useState("");
-  const [gjendjaVendndodhjes, setGjendjaVendndodhjes] = useState(
-    "Vendndodhja nuk është kërkuar.",
-  );
+  const [gjendjaVendndodhjes, setGjendjaVendndodhjes] =
+    useState<GjendjaVendndodhjes>("idle");
   const [dukeKerkuarVendndodhjen, setDukeKerkuarVendndodhjen] = useState(false);
   const [saktesia, setSaktesia] = useState<number | null>(null);
 
@@ -38,17 +54,13 @@ export function Vendtakimi({
     >,
   ) {
     if (error.code === error.PERMISSION_DENIED) {
-      setGjendjaVendndodhjes(
-        "Leja u refuzua. Shkruaj vendtakimin vetë.",
-      );
+      setGjendjaVendndodhjes("denied");
     } else if (error.code === error.POSITION_UNAVAILABLE) {
-      setGjendjaVendndodhjes("Vendndodhja nuk është e disponueshme.");
+      setGjendjaVendndodhjes("unavailable");
     } else if (error.code === error.TIMEOUT) {
-      setGjendjaVendndodhjes(
-        "Kërkesa për vendndodhje skadoi. Provo përsëri.",
-      );
+      setGjendjaVendndodhjes("timeout");
     } else {
-      setGjendjaVendndodhjes("Vendndodhja nuk mund të lexohej.");
+      setGjendjaVendndodhjes("unavailable");
     }
     setDukeKerkuarVendndodhjen(false);
   }
@@ -57,16 +69,16 @@ export function Vendtakimi({
     setSaktesia(null);
     if (!navigator.geolocation) {
       setDukeKerkuarVendndodhjen(false);
-      setGjendjaVendndodhjes("Shfletuesi nuk e mbështet vendndodhjen.");
+      setGjendjaVendndodhjes("unavailable");
       return;
     }
 
     setDukeKerkuarVendndodhjen(true);
-    setGjendjaVendndodhjes("Po kërkojmë vendndodhjen…");
+    setGjendjaVendndodhjes("loading");
 
     function kurMerretPozicioni(position: GeolocationPosition) {
       setSaktesia(Math.round(position.coords.accuracy));
-      setGjendjaVendndodhjes("Pozicioni u mor.");
+      setGjendjaVendndodhjes("success");
       setDukeKerkuarVendndodhjen(false);
     }
 
@@ -77,7 +89,7 @@ export function Vendtakimi({
         { timeout: 10000 },
       );
     } catch {
-      setGjendjaVendndodhjes("Vendndodhja nuk mund të lexohej.");
+      setGjendjaVendndodhjes("unavailable");
       setDukeKerkuarVendndodhjen(false);
     }
   }
@@ -103,11 +115,9 @@ export function Vendtakimi({
       >
         Konfirmo në telefon
       </button>
-      {gabim && (
-        <p role="alert" data-testid="meeting-error">
-          {gabim}
-        </p>
-      )}
+      <p role="alert" data-testid="meeting-error">
+        {gabim}
+      </p>
       <p data-testid="confirmed-meeting">
         Vendtakimi i konfirmuar: {vendtakimi}
       </p>
@@ -121,12 +131,16 @@ export function Vendtakimi({
       >
         Përdor vendndodhjen time
       </button>
-      <p role="status" data-testid="location-status">
-        {gjendjaVendndodhjes}
+      <p
+        role="status"
+        data-testid="location-status"
+        data-state={gjendjaVendndodhjes}
+      >
+        {mesazhetVendndodhjes[gjendjaVendndodhjes]}
       </p>
-      {saktesia !== null && (
-        <p data-testid="location-accuracy">Saktësia: {saktesia} m</p>
-      )}
+      <p data-testid="location-accuracy">
+        {saktesia !== null ? `Saktësia: ${saktesia} m` : ""}
+      </p>
     </section>
   );
 }

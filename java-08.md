@@ -43,6 +43,8 @@ Skedari që plotësova: `java-08.md`.
 
 Skedarët kryesorë të provës: `aplikacioni/src/components/Vendtakimi.tsx`, `aplikacioni/src/components/Java08Test.tsx` dhe `aplikacioni/src/app/java-08-test/page.tsx`. Puna integrohet edhe te faqja e detajeve `aplikacioni/src/app/udhetimi/[id]/page.tsx`.
 
+Konfigurimi automatik është në `mobile-week08.json` në rrënjën e repository-t dhe tregon te `/java-08-test`. Lockfile-i i instalimit është `aplikacioni/package-lock.json`. Faqja përdor të njëjtin komponent `Vendtakimi` si detajet e udhëtimit dhe të dhënat lokale fiktive të Dritonit; nuk lexon databazën. Fusha, konfirmimi, gabimi, vendndodhja dhe saktësia kanë etiketat `data-testid` të testit, ndërsa statusi i vendndodhjes raportohet me `data-state`.
+
 Repository: https://github.com/bleriondugolli/rideshare-mobile
 
 Faqja e provës u hap lokalisht te `http://127.0.0.1:3000/java-08-test`; nuk po jap link publik demonstrimi sepse nuk e verifikova në këtë seancë.
