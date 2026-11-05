@@ -14,8 +14,8 @@ const mesazhetVendndodhjes: Record<GjendjaVendndodhjes, string> = {
   idle: "Vendndodhja nuk është kërkuar.",
   loading: "Po kërkojmë vendndodhjen…",
   success: "Pozicioni u mor.",
-  denied: "Leja u refuzua. Shkruaj vendtakimin vetë.",
-  timeout: "Kërkesa për vendndodhje skadoi. Provo përsëri.",
+  denied: "Leja u refuzua (denied). Shkruaj vendtakimin vetë.",
+  timeout: "Kërkesa për vendndodhje skadoi (timeout). Provo përsëri.",
   unavailable: "Vendndodhja nuk është e disponueshme.",
 };
 
