@@ -48,16 +48,13 @@ export function Vendtakimi({
   }
 
   function kurDeshtonLeximi(
-    error: Pick<
-      GeolocationPositionError,
-      "code" | "PERMISSION_DENIED" | "POSITION_UNAVAILABLE" | "TIMEOUT"
-    >,
+    error: Pick<GeolocationPositionError, "code">,
   ) {
-    if (error.code === error.PERMISSION_DENIED) {
+    if (error.code === 1) {
       setGjendjaVendndodhjes("denied");
-    } else if (error.code === error.POSITION_UNAVAILABLE) {
+    } else if (error.code === 2) {
       setGjendjaVendndodhjes("unavailable");
-    } else if (error.code === error.TIMEOUT) {
+    } else if (error.code === 3) {
       setGjendjaVendndodhjes("timeout");
     } else {
       setGjendjaVendndodhjes("unavailable");

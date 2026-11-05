@@ -22,7 +22,7 @@ Provë shtesë — Hapat: Simulova sërish refuzimin në build-in lokal dhe shkr
 
 Pritshmëria: Shfaqet mesazhi për refuzimin, dhe pas konfirmimit vendtakimi bëhet “Kafeneja”.
 
-Vëzhgimi: Mesazhi u shfaq dhe vlera e konfirmuar u bë “Kafeneja”. Këtë provë e bëra vetë, jo me koleg. Kushti që zgjedh mesazhin është `if (error.code === error.PERMISSION_DENIED)` te `aplikacioni/src/components/Vendtakimi.tsx`.
+Vëzhgimi: Mesazhi u shfaq dhe vlera e konfirmuar u bë “Kafeneja”. Këtë provë e bëra vetë, jo me koleg. Pas rikontrollit automatik, korrigjova klasifikimin te `aplikacioni/src/components/Vendtakimi.tsx` që përdor kodet standarde numerike `1` (refuzim), `2` (i padisponueshëm) dhe `3` (skadim), pa u varur nga konstante shtesë në objektin e gabimit.
 
 ### Prova 3: Dëshmitë në GitHub nuk tregojnë adresën time reale.
 Hapat: Shqyrtova raportin dhe skedarët e provës `aplikacioni/src/components/Vendtakimi.tsx`, `aplikacioni/src/components/Java08Test.tsx` dhe `aplikacioni/src/app/java-08-test/page.tsx`, si dhe rregullat te `aplikacioni/.gitignore`.
@@ -37,6 +37,9 @@ Hapat: Për simulim në zhvillim shtova përkohësisht një buton që thërriste
 Pritshmëria: Shfaqet mesazhi i timeout-it, pritja përfundon, butoni kryesor mund të përdoret përsëri dhe vendtakimi manual mund të konfirmohet.
 
 Vëzhgimi: U shfaq “Kërkesa për vendndodhje skadoi. Provo përsëri.” Butoni kryesor u aktivizua sërish; simulimi i dytë funksionoi dhe “Vendtakimi i konfirmuar: Biblioteka” u shfaq. Kjo ishte simulim i degës `code: 3`, jo test i vonesës reale. Nuk publikova koordinata ose adresë.
+
+### Rikontrolli pas raportit automatik.
+Simulova sërish refuzimin me objekt gabimi që përmban vetëm `code: 1` dhe skadimin me vetëm `code: 3`. Në të dy rastet statusi u bë përkatësisht `denied` dhe `timeout`, pritja përfundoi, butoni i vendndodhjes u aktivizua dhe vendtakimi “Biblioteka” u konfirmua manualisht. Këto janë prova të simuluara në shfletues, jo leje GPS apo skadim real në pajisje.
 
 ## Ku gjendet puna
 Skedari që plotësova: `java-08.md`.
