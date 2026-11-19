@@ -27,3 +27,28 @@ export async function gjejUdhetimin(id: string): Promise<Udhetim | undefined> {
   `;
   return rows[0] as Udhetim | undefined;
 }
+
+export async function gjejShoferin(udhetimId: string): Promise<string | undefined> {
+  const sql = getSql();
+  const rows = await sql`
+    SELECT p.emri
+    FROM udhetimet u
+    JOIN profilet p ON p.github_id = u.shofer_id
+    WHERE u.id = ${udhetimId}
+  `;
+  return rows[0]?.emri as string | undefined;
+}
+
+export async function lexoPreferimin(userId: string, udhetimId: string) {
+  const sql = getSql();
+  const rows = await sql`
+    SELECT
+      EXISTS (
+        SELECT 1 FROM udhetimet_e_ruajtura
+        WHERE github_id = ${userId} AND udhetim_id = ${udhetimId}
+      ) AS ruajtur,
+      (SELECT COUNT(*)::int FROM udhetimet_e_ruajtura
+       WHERE github_id = ${userId}) AS numer
+  `;
+  return rows[0] as { ruajtur: boolean; numer: number };
+}

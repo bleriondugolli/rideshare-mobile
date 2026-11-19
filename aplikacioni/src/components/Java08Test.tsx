@@ -3,8 +3,8 @@ import { Vendtakimi } from "./Vendtakimi";
 export default function Java08Test() {
   const udhetimLokal = {
     shoferi: "Driton",
-    nisja: "Tiranë",
-    destinacioni: "Durrës",
+    nisja: "prishtinë",
+    destinacioni: "kolegji aab",
     ora: "08:00",
     vendtakimi: "Biblioteka",
   };

@@ -19,10 +19,10 @@ Përsërit ruajtjen për të njëjtin udhëtim. Çelësi unik pritet të siguroj
 ## Ku gjendet puna
 Kodi: `Preferimi.tsx`, `api/preferimet/route.ts`, faqja e udhëtimit dhe `schema-java09.sql`.
 
-Link lokal: [http://localhost:3000/udhetimi/2](http://localhost:3000/udhetimi/2). Nuk ka link publik të verifikuar.
+Link publik production: [https://aplikacioni-pi.vercel.app/udhetimi/2](https://aplikacioni-pi.vercel.app/udhetimi/2).
 
 ## Çfarë mbetet
-Ekzekuto migrimin dhe provo ruajtjen, rifreskimin dhe kërkesat e përsëritura me një përdorues të kyçur.
+Ekzekuto migrimin `aplikacioni/schema-java09.sql` në Neon dhe provo ruajtjen, rifreskimin dhe kërkesat e përsëritura me një përdorues të kyçur. Deploy-i i Vercel-it nuk ekzekuton migrimin.
 
 ## Ndihma nga AI
 Përdora AI për kodin dhe raportin. Kontrollova kodin dhe `git diff --check`, por nuk ekzekutova aplikacionin ose provat.
